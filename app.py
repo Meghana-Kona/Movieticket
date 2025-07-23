@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect
 import sqlite3
-
+import os
 app = Flask(__name__)
 
 # Create database and table
@@ -67,5 +67,6 @@ def delete(id):
     conn.close()
     return redirect('/tickets')
 
-if __name__ == '__main__':
-    app.run(debug=True)
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
